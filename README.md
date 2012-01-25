@@ -22,8 +22,8 @@ Usage
 
 There are two phases to using this plugin:
 
-1) Building the data.
-2) Building the Javascript for display.
+1. Building the data.
+2. Building the Javascript for display.
 
 ##Controller Setup & Actions##
 
@@ -76,10 +76,10 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 
 ##View##
 
-1) Create a div for the chart.
+1. Create a div for the chart.
 	* You can use the default `chart_div` as the id or set your own.
 	* If you set your own div ID (or need to for more than one chart) then update your chart object: `<?php $chart->div = 'div_id';?>`
-2) Use the `GoogleChartHelper` to display your chart(s).
+2. Use the `GoogleChartHelper` to display your chart(s).
 	* `<div id="chart_div"><?php $this->GoogleChart->createJsChart($chart);?></div>`
 
 License
