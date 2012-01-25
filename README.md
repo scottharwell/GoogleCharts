@@ -29,6 +29,8 @@ There are two phases to using this plugin:
 
 Include the `GoogleChart` class in your controller: `App::uses('GoogleChart', 'GoogleChart.Vendor');`. This class will help build the data for your charts.
 
+Also, include the GoogleChartHelper class in your controller so we can use it in the view:  `public $helpers = array('GoogleChart', 'GoogleChart.View/Helper);`
+
 The GoogleChart class is meant to mimic the properties needed per the Google Chart API.  Each chart that you want to display on your page needs it's own instance of this class.  Once you have prepared the class with settings and data, then set for your view to pass to the View Helper.
 
 	//Get data from model
