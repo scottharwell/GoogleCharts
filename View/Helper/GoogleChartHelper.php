@@ -45,8 +45,8 @@ class GoogleChartHelper extends AppHelper {
  */
 	public function createJsChart($chart){
 		if(get_class($chart) === "GoogleChart"){
-			$this->setupChartJs();
-			$this->buildChartJs($chart);
+			$this->_setupChartJs();
+			$this->_buildChartJs($chart);
 		}
 	}
 
@@ -54,7 +54,7 @@ class GoogleChartHelper extends AppHelper {
  * Setup JS Needed for Charts
  *
  */
-	protected function setupChartJs(){
+	protected function _setupChartJs(){
 		if(!$this->libraryLoaded){
 			echo $this->Html->script(
 				array($this->googleScriptPath),
@@ -76,7 +76,7 @@ class GoogleChartHelper extends AppHelper {
  *
  * @param Google Chart object
  */
-	protected function buildChartJs(GoogleChart $chart){
+	protected function _buildChartJs(GoogleChart $chart){
 		//get Column keys to match against rows
 		$columnKeys = array_keys($chart->columns);
 		
