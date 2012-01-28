@@ -37,7 +37,7 @@ class GoogleChart extends Object{
  *
  * @var string
  */
-	public $options = array('width' => 400, 'height' => 300, 'title' => 'Chart', 'hAxis.minValue' => 0, 'titleTextStyle' => array('color' => 'red'));
+	public $options = array('width' => 400, 'height' => 300, 'title' => 'Chart', 'titleTextStyle' => array('color' => 'red'));
 
 /**
  * Default div name to place the chart
