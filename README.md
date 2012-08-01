@@ -3,15 +3,20 @@ About
 
 This is an attempt to build a multipurpose CakePHP plugin to interface with the Google Charts Javascript API.
 
+I welcome any assistance for enhancing / fixing issues with this plugin!
+
 Requirements
 ------------
 
 * CakePHP 2.0+
+* PHP 5.3+
+
+Currently, this plugin only works with 2D charts (line, bar, pie, etc.) 
 
 Installation
 ------------
 
-Clone this repository or download a copy to the CakePHP or your application's `Plugins` directory. Be sure to name the folder `GoogleCharts`.
+Clone this repository or download a copy to the CakePHP or your application's `Plugins` directory. Be sure to name the folder `GoogleChart`.
 
 Be sure that you load plugins in your application's bootstrap file:
 
@@ -27,9 +32,9 @@ There are two phases to using this plugin:
 
 ##Controller Setup & Actions##
 
-Include the `GoogleChart` class in your controller: `App::uses('GoogleChart', 'GoogleChart.Vendor');`. This class will help build the data for your charts.
+Include the `GoogleChart` class in your controller: `App::uses('GoogleChart', 'GoogleChart.Lib');`. This class will help build the data for your charts.
 
-Also, include the GoogleChartHelper class in your controller so we can use it in the view:  `public $helpers = array('GoogleChart', 'GoogleChart.View/Helper);`
+Also, include the GoogleChartHelper class in your controller so we can use it in the view:  `public $helpers = array('GoogleChart.GoogleChart');`
 
 The GoogleChart class is meant to mimic the properties needed per the Google Chart API.  Each chart that you want to display on your page needs it's own instance of this class.  Once you have prepared the class with settings and data, then set for your view to pass to the View Helper.
 
@@ -52,25 +57,33 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 
 	//Setup data for chart
 	$chart = new GoogleChart();
-	$chart->type = "LineChart"; 				//Only tested with Line and Bar charts -- Needs testing with other charts
-	$chart->options['title'] = "Recent Scores"; //Options array holds all options for Chart API
-	$chart->columns = array(
-		'event_date' => array( 					//Each column key should correspond to a field in your data array
-			'type' => 'string',					//Tells the chart what type of data this is
-			'label' => 'Date'					//The chart label for this column
-		),
-		'score' => array(
-			'type' => 'number',
-			'label' => 'Score'
-		)
-	);
+	
+	$chart->type("LineChart)	
+		//Options array holds all options for Chart API
+		->options(array('title' => "Recent Scores")) 
+		->columns(array(
+			//Each column key should correspond to a field in your data array
+			'event_date' => array(
+				//Tells the chart what type of data this is
+				'type' => 'string',		
+				//The chart label for this column			
+				'label' => 'Date'
+			),
+			'score' => array(
+				'type' => 'number',
+				'label' => 'Score'
+			)
+		);
 	
 	//Loop through our data and creates data rows
-	//Data will be added to rows based on the column keys above.
+	//Data will be added to rows based on the column keys above (event_date, score).
 	//If there are missing fields in your data or the keys do not match, then this will not work.
-	foreach($rounds as $round){
+	foreach($model as $round){
 		$chart->addRow($round['Round']);
 	}
+	
+	//You can also manually add rows: 
+	$chart->addRow(array('event_date' => '1/1/2012', 'score' => 55));
 	
 	//Set the chart for your view
 	$this->set(compact('chart'));
