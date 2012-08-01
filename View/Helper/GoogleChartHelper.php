@@ -46,13 +46,15 @@ class GoogleChartHelper extends AppHelper
      * Create Charts
      *
      * @param array - nested arrays of charts and data array('chart' => array($data, $keys, $Model, $chartDiv, $otherOptions))
+     * @param String $variableId Allows one to set the js variable name for chart objects to allow reference for updates in other JS files
+     * @return void
      */
-    public function createJsChart ($chart)
+    public function createJsChart ($chart, $variableId = null)
     {
         if (get_class ($chart) === "GoogleChart")
         {
             $this->_setupChartJs ();
-            $this->_buildChartJs ($chart);
+            $this->_buildChartJs ($chart, $variableId);
         }
 
     }
@@ -60,6 +62,7 @@ class GoogleChartHelper extends AppHelper
     /**
      * Setup JS Needed for Charts
      *
+     * @return void
      */
     protected function _setupChartJs ()
     {
@@ -84,19 +87,29 @@ class GoogleChartHelper extends AppHelper
      * Builds JS for a chart
      *
      * @param Google Chart object
+     * @param String $variableId Allows one to set the js variable name for chart objects to allow reference for updates in other JS files
+     * @return void
      */
-    protected function _buildChartJs (GoogleChart $chart)
+    protected function _buildChartJs (GoogleChart $chart, $variableId = null)
     {
         //get Column keys to match against rows
         $columnKeys = array_keys ($chart->columns);
 
         //Make sure you are using jQuery
         $scriptOutput = "$(document).ready(function(){\n";
+        
+        //create a uuid for chart variables in case we have multiples
+        $chartOptionsId = !empty($variableId) ? "options_{$variableId}" : uniqid ("options_");
+        
+        //encode chart options
+        $options = json_encode ($chart->options);
+        
+        $scriptOutput .= "{$chartOptionsId} = chartOptions = {$options};\n";
 
         //create a uuid for chart variables in case we have multiples
-        $chartDataId = uniqid ("js_");
+        $chartDataId = !empty($variableId) ? "js_{$variableId}" : uniqid ("js_");
 
-        $scriptOutput .= "var {$chartDataId} = new google.visualization.arrayToDataTable(";
+        $scriptOutput .= "{$chartDataId} = chartData = new google.visualization.arrayToDataTable(";
         
         $scriptOutput .= "[\n[";
         
@@ -145,13 +158,10 @@ class GoogleChartHelper extends AppHelper
 
         $scriptOutput .= "]);";
 
-        //encode chart options
-        $options = json_encode ($chart->options);
+        $chartVarId = !empty($variableId) ? "chart_{$variableId}" : uniqid ("chart_");
 
-        $chartVarId = uniqid ("chart_");
-
-        $scriptOutput .= "var {$chartVarId} = new google.visualization.{$chart->type}(document.getElementById('{$chart->div}'))";
-        $scriptOutput .= ".draw({$chartDataId}, {$options});";
+        $scriptOutput .= "{$chartVarId} = chart = new google.visualization.{$chart->type}(document.getElementById('{$chart->div}'))";
+        $scriptOutput .= ".draw({$chartDataId}, {$chartOptionsId});";
 
         $scriptOutput .= "});";
 
