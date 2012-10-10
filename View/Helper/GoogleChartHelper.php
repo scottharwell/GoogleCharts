@@ -160,8 +160,13 @@ class GoogleChartHelper extends AppHelper
 
         $chartVarId = !empty($variableId) ? "chart_{$variableId}" : uniqid ("chart_");
 
-        $scriptOutput .= "{$chartVarId} = chart = new google.visualization.{$chart->type}(document.getElementById('{$chart->div}'))";
-        $scriptOutput .= ".draw({$chartDataId}, {$chartOptionsId});";
+        $scriptOutput .= "{$chartVarId} = chart = new google.visualization.{$chart->type}(document.getElementById('{$chart->div}'));";
+        
+        foreach ($chart->callbacks as $event => $function) {
+          $scriptOutput .= "google.visualization.events.addListener({$chartVarId}, '{$event}', {$function});";
+        }
+        
+        $scriptOutput .= "{$chartVarId}.draw({$chartDataId}, {$chartOptionsId});";
 
         $scriptOutput .= "});";
 
