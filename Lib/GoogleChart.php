@@ -56,6 +56,13 @@ class GoogleChart extends Object
             'color' => 'red'
         )
     );
+    
+    /**
+     * Default callbacks
+     *
+     * @var  array	$callbacks	Array of event_name => function name or anonymous function
+     */
+    private $callbacks = array ();
 
     /**
      * Default div name to place the chart
