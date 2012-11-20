@@ -58,10 +58,10 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 	//Setup data for chart
 	$chart = new GoogleChart();
 	
-	$chart->type("LineChart)	
+	$chart->type("LineChart");	
 		//Options array holds all options for Chart API
-		->options(array('title' => "Recent Scores")) 
-		->columns(array(
+		$chart->options(array('title' => "Recent Scores")); 
+		$chart->columns(array(
 			//Each column key should correspond to a field in your data array
 			'event_date' => array(
 				//Tells the chart what type of data this is
@@ -73,7 +73,7 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 				'type' => 'number',
 				'label' => 'Score'
 			)
-		);
+		));
 	
 	//Loop through our data and creates data rows
 	//Data will be added to rows based on the column keys above (event_date, score).
@@ -81,6 +81,13 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 	foreach($model as $round){
 		$chart->addRow($round['Round']);
 	}
+
+	//You can also use this way to loop through data and creates data rows: 
+	foreach($rounds as row){
+		//$chart->addRow(array('event_date' => $row['Model']['field1'], 'score' => $row['Model']['field2']));
+		$chart->addRow(array('event_date' => row['Round']['event_date'], 'score' => row['Round']['score']));
+	}
+	
 	
 	//You can also manually add rows: 
 	$chart->addRow(array('event_date' => '1/1/2012', 'score' => 55));
