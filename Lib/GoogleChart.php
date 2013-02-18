@@ -153,7 +153,7 @@ class GoogleChart extends Object
             $i = 0;
             foreach ($this->columns as $key => $column)
             {
-                $row[$i] = $data[$key];
+                $row[$i] = (!empty($data[$key]) ? $data[$key] : 0);
                 $i++;
             }
             $this->rows[] = $row;
