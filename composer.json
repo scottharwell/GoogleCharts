@@ -1,0 +1,15 @@
+{
+    "name": "scottharwell/google-chart",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "google", "chart", "plugin"],
+    "description": "A CakePHP Plugin to create Google Charts more easily",
+    "homepage": "http://github.com/scottharwell/GoogleChart",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.2.8",
+        "composer/installers": "*"
+    },
+    "support": {
+        "issues": "https://github.com/scottharwell/cakephp-googlecharts-plugin/issues"
+    }
+}
