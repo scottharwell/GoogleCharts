@@ -11,9 +11,9 @@
  */
 
 App::uses ('HtmlHelper', 'View/Helper');
-App::uses ('GoogleChart', 'GoogleChart.Vendor');
+App::uses ('GoogleCharts', 'GoogleCharts.Vendor');
 
-class GoogleChartHelper extends AppHelper
+class GoogleChartsHelper extends AppHelper
 {
 
     /**
@@ -51,7 +51,7 @@ class GoogleChartHelper extends AppHelper
      */
     public function createJsChart ($chart, $variableId = null)
     {
-        if (get_class ($chart) === "GoogleChart")
+        if (get_class ($chart) === "GoogleCharts")
         {
             $this->_setupChartJs ();
             $this->_buildChartJs ($chart, $variableId);
@@ -90,7 +90,7 @@ class GoogleChartHelper extends AppHelper
      * @param String $variableId Allows one to set the js variable name for chart objects to allow reference for updates in other JS files
      * @return void
      */
-    protected function _buildChartJs (GoogleChart $chart, $variableId = null)
+    protected function _buildChartJs (GoogleCharts $chart, $variableId = null)
     {
         //get Column keys to match against rows
         $columnKeys = array_keys ($chart->columns);

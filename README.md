@@ -16,7 +16,7 @@ Currently, this plugin only works with 2D charts (line, bar, pie, etc.)
 Installation
 ------------
 
-Clone this repository or download a copy to the CakePHP or your application's `Plugins` directory. Be sure to name the folder `GoogleChart`.
+Clone this repository or download a copy to the CakePHP or your application's `Plugins` directory. Be sure to name the folder `GoogleCharts`.
 
 Be sure that you load plugins in your application's bootstrap file:
 
@@ -32,11 +32,11 @@ There are two phases to using this plugin:
 
 ##Controller Setup & Actions##
 
-Include the `GoogleChart` class in your controller: `App::uses('GoogleChart', 'GoogleChart.Lib');`. This class will help build the data for your charts.
+Include the `GoogleCharts` class in your controller: `App::uses('GoogleCharts', 'GoogleCharts.Lib');`. This class will help build the data for your charts.
 
-Also, include the GoogleChartHelper class in your controller so we can use it in the view:  `public $helpers = array('GoogleChart.GoogleChart');`
+Also, include the GoogleChartsHelper class in your controller so we can use it in the view:  `public $helpers = array('GoogleCharts.GoogleCharts');`
 
-The GoogleChart class is meant to mimic the properties needed per the Google Chart API.  Each chart that you want to display on your page needs it's own instance of this class.  Once you have prepared the class with settings and data, then set for your view to pass to the View Helper.
+The GoogleCharts class is meant to mimic the properties needed per the Google Chart API.  Each chart that you want to display on your page needs it's own instance of this class.  Once you have prepared the class with settings and data, then set for your view to pass to the View Helper.
 
 	//Get data from model
 	//Get the last 10 rounds for score graph
@@ -56,7 +56,7 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 	);
 
 	//Setup data for chart
-	$chart = new GoogleChart();
+	$chart = new GoogleCharts();
 	
 	$chart->type("LineChart");	
 		//Options array holds all options for Chart API
@@ -101,8 +101,8 @@ The GoogleChart class is meant to mimic the properties needed per the Google Cha
 1. Create a div for the chart.
 	* You can use the default `chart_div` as the id or set your own.
 	* If you set your own div ID (or need to for more than one chart) then update your chart object: `<?php $chart->div('div_id');?>`
-2. Use the `GoogleChartHelper` to display your chart(s).
-	* `<div id="chart_div"><?php $this->GoogleChart->createJsChart($chart);?></div>`
+2. Use the `GoogleChartsHelper` to display your chart(s).
+	* `<div id="chart_div"><?php $this->GoogleCharts->createJsChart($chart);?></div>`
 
 License
 =======
