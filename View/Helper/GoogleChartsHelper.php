@@ -158,6 +158,15 @@ class GoogleChartsHelper extends AppHelper
 
         $scriptOutput .= "]);";
 
+        $columns = array_values($chart->columns);
+        foreach ($columns as $numeric_key => $column)
+        {
+        	if (isset($column['role']))
+        	{
+        		$scriptOutput .= "\nchartData.setColumnProperty($numeric_key, 'role', '{$column['role']}');";
+        	}
+        }
+        
         $chartVarId = !empty($variableId) ? "chart_{$variableId}" : uniqid ("chart_");
 
         $scriptOutput .= "{$chartVarId} = chart = new google.visualization.{$chart->type}(document.getElementById('{$chart->div}'));";
