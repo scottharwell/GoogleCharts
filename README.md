@@ -71,7 +71,9 @@ The GoogleCharts class is meant to mimic the properties needed per the Google Ch
 			),
 			'score' => array(
 				'type' => 'number',
-				'label' => 'Score'
+				'label' => 'Score',
+				//Optional NumberFormat pattern
+				'format' => '#,###'
 			)
 		));
 	
