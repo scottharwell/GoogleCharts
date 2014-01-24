@@ -165,6 +165,11 @@ class GoogleChartsHelper extends AppHelper
         	{
         		$scriptOutput .= "\nchartData.setColumnProperty($numeric_key, 'role', '{$column['role']}');";
         	}
+        	if (isset($column['format']))
+        	{
+        		$scriptOutput .= "\nvar formatter = new google.visualization.NumberFormat({pattern: '{$column['format']}'});";
+        		$scriptOutput .= "\nformatter.format(chartData, $numeric_key);";
+        	}
         }
         
         $chartVarId = !empty($variableId) ? "chart_{$variableId}" : uniqid ("chart_");
