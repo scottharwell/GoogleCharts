@@ -107,7 +107,7 @@ class GoogleCharts extends Object
 
         if (!empty ($div))
         {
-            $this->div = $div;
+            $this->div = $this->setDiv($div);
         }
 
     }
@@ -163,6 +163,11 @@ class GoogleCharts extends Object
 
         return false;
 
+    }
+    
+    public function setDiv($divId = 'chart_div')
+    {
+        $this->div = $divId;
     }
 
 }
