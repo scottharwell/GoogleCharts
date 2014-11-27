@@ -85,9 +85,9 @@ The GoogleCharts class is meant to mimic the properties needed per the Google Ch
 	}
 
 	//You can also use this way to loop through data and creates data rows: 
-	foreach($rounds as row){
+	foreach($rounds as $row){
 		//$chart->addRow(array('event_date' => $row['Model']['field1'], 'score' => $row['Model']['field2']));
-		$chart->addRow(array('event_date' => row['Round']['event_date'], 'score' => row['Round']['score']));
+		$chart->addRow(array('event_date' => $row['Round']['event_date'], 'score' => $row['Round']['score']));
 	}
 	
 	
