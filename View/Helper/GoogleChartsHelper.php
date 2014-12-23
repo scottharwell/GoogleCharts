@@ -74,7 +74,7 @@ class GoogleChartsHelper extends AppHelper
             $this->libraryLoaded = true;
 
             //JS to load
-            $js = 'google.load("visualization", "1", {packages:["corechart", "gauge", "calendar"]});';
+            $js = 'google.load("visualization", "1", {packages:["corechart", "gauge", "calendar", "table"]});';
 
             //create an array of charts to load more than one
             $js .= "var charts = new Array();";
