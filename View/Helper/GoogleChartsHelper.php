@@ -117,7 +117,7 @@ class GoogleChartsHelper extends AppHelper
         $last_key = end($keys);
         foreach ($chart->columns as $key => $column)
         {
-            $scriptOutput .= "'{$column['label']}'";
+            $scriptOutput .= "'" . addslashes($column['label']) . "'";
             
             if($key !== $last_key){
                 $scriptOutput .= ",";
