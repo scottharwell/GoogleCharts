@@ -141,6 +141,10 @@ class GoogleChartsHelper extends AppHelper
                 {
                     $jsVal = "'{$val}'";
                 }
+                if ($val === null)
+                {
+                    $jsVal = 'null';
+                }
                 $scriptOutput .= $jsVal;
                 
                 if ($rKey !== $last_row_key)
