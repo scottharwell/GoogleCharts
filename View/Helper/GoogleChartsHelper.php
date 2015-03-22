@@ -117,7 +117,7 @@ class GoogleChartsHelper extends AppHelper
         $last_key = end($keys);
         foreach ($chart->columns as $key => $column)
         {
-            $scriptOutput .= "'{$column['label']}'";
+            $scriptOutput .= "'" . addslashes($column['label']) . "'";
             
             if($key !== $last_key){
                 $scriptOutput .= ",";
@@ -140,6 +140,10 @@ class GoogleChartsHelper extends AppHelper
                 if ($chart->columns[$columnKeys[$rKey]]['type'] === "string")
                 {
                     $jsVal = "'{$val}'";
+                }
+                if ($val === null)
+                {
+                    $jsVal = 'null';
                 }
                 $scriptOutput .= $jsVal;
                 
