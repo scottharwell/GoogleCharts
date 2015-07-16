@@ -83,8 +83,6 @@ class GoogleCharts
 
     public function __construct ($type = null, $columns = null, $rows = null, $options = null, $div = null)
     {
-        parent::__construct ();
-
         if (!empty ($type))
         {
             $this->type = $type;
