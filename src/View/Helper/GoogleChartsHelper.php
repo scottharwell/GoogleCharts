@@ -10,10 +10,12 @@
   Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-App::uses ('HtmlHelper', 'View/Helper');
-App::uses ('GoogleCharts', 'GoogleCharts.Vendor');
+namespace GoogleCharts\View\Helper;
 
-class GoogleChartsHelper extends AppHelper
+use Cake\View\Helper;
+use Cake\View\Helper\HTMLHelper;
+
+class GoogleChartsHelper extends Helper
 {
 
     /**
@@ -35,10 +37,11 @@ class GoogleChartsHelper extends AppHelper
      *
      * 
      */
-    public function __construct (View $View, $settings = array ())
+    public function __construct (\App\View\AppView $View, $settings = array ())
     {
         parent::__construct ($View, $settings);
         $this->Html = new HtmlHelper ($View, $settings);
+        require_once(ROOT.DS.'plugins'.DS.'GoogleCharts'.DS.'vendor'.DS.'GoogleCharts.php');
 
     }
 
