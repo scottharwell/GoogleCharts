@@ -93,7 +93,7 @@ class GoogleChartsHelper extends Helper
      * @param String $variableId Allows one to set the js variable name for chart objects to allow reference for updates in other JS files
      * @return void
      */
-    protected function _buildChartJs (GoogleCharts $chart, $variableId = null)
+    protected function _buildChartJs (\GoogleCharts $chart, $variableId = null)
     {
         //get Column keys to match against rows
         $columnKeys = array_keys ($chart->columns);
