@@ -46,7 +46,7 @@ Run `composer dumpautoload` if necessary.
 
 Include the `GoogleCharts` class in your controller methods: `require_once(ROOT.DS.'plugins'.DS.'GoogleCharts'.DS.'vendor'.DS.'GoogleCharts.php');`. This class will help build the data for your charts.
 
-Also, include the GoogleChartsHelper class in your controller so we can use it in the view:  `$this->loadHelper('GoogleCharts.GoogleCharts');`
+Also, load the `GoogleChartsHelper` class in the `beforeRender` method of your controller so we can use it in the view:  `$this->getView()->loadHelper('GoogleCharts.GoogleCharts');`
 
 The GoogleCharts class is meant to mimic the properties needed per the Google Chart API.  Each chart that you want to display on your page needs it's own instance of this class.  Once you have prepared the class with settings and data, then set for your view to pass to the View Helper.
 
