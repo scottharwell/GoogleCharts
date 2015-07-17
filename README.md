@@ -10,6 +10,7 @@ Requirements
 
 * CakePHP 3.0+
 * PHP 5.4.16+
+* jQuery
 
 Currently, this plugin only works with 2D charts (line, bar, pie, etc.)
 
