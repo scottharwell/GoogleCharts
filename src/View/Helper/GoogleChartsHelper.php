@@ -191,7 +191,7 @@ class GoogleChartsHelper extends Helper
 
         $scriptOutput .= "});";
 
-        $this->Html->scriptBlock ($scriptOutput, array ('inline' => false, 'safe'   => true));
+        $this->Html->scriptBlock ($scriptOutput, array ('block' => true, 'safe'   => true));
 
     }
 
