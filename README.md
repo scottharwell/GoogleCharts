@@ -113,6 +113,7 @@ The GoogleCharts class is meant to mimic the properties needed per the Google Ch
     * If you set your own div ID (or need to for more than one chart) then update your chart object: `<?php $chart->div('div_id');?>`
 2. Use the `GoogleChartsHelper` to display your chart(s).
     * `<div id="chart_div"><?php $this->GoogleCharts->createJsChart($chart);?></div>`
+3. Make sure that you have a view block named 'script' in your layout.
 
 License
 =======
