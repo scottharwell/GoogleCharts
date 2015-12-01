@@ -13,7 +13,7 @@
 namespace GoogleCharts\View\Helper;
 
 use Cake\View\Helper;
-use Cake\View\Helper\HTMLHelper;
+use Cake\View\Helper\HtmlHelper;
 
 class GoogleChartsHelper extends Helper
 {
