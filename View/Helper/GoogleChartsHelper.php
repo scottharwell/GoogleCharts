@@ -141,6 +141,10 @@ class GoogleChartsHelper extends AppHelper
                 {
                     $jsVal = "'{$val}'";
                 }
+                if ($chart->columns[$columnKeys[$rKey]]['type'] === "array")
+                {
+                    $jsVal = json_encode($val);
+                }
                 if ($val === null)
                 {
                     $jsVal = 'null';
