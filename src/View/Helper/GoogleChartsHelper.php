@@ -10,10 +10,12 @@
   Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-App::uses ('HtmlHelper', 'View/Helper');
-App::uses ('GoogleCharts', 'GoogleCharts.Vendor');
+namespace GoogleCharts\View\Helper;
 
-class GoogleChartsHelper extends AppHelper
+use Cake\View\Helper;
+use Cake\View\Helper\HtmlHelper;
+
+class GoogleChartsHelper extends Helper
 {
 
     /**
@@ -35,10 +37,11 @@ class GoogleChartsHelper extends AppHelper
      *
      * 
      */
-    public function __construct (View $View, $settings = array ())
+    public function __construct (\App\View\AppView $View, $settings = array ())
     {
         parent::__construct ($View, $settings);
         $this->Html = new HtmlHelper ($View, $settings);
+        require_once(ROOT.DS.'plugins'.DS.'GoogleCharts'.DS.'vendor'.DS.'GoogleCharts.php');
 
     }
 
@@ -90,7 +93,7 @@ class GoogleChartsHelper extends AppHelper
      * @param String $variableId Allows one to set the js variable name for chart objects to allow reference for updates in other JS files
      * @return void
      */
-    protected function _buildChartJs (GoogleCharts $chart, $variableId = null)
+    protected function _buildChartJs (\GoogleCharts $chart, $variableId = null)
     {
         //get Column keys to match against rows
         $columnKeys = array_keys ($chart->columns);
@@ -188,7 +191,7 @@ class GoogleChartsHelper extends AppHelper
 
         $scriptOutput .= "});";
 
-        $this->Html->scriptBlock ($scriptOutput, array ('inline' => false, 'safe'   => true));
+        $this->Html->scriptBlock ($scriptOutput, array ('block' => true, 'safe'   => true));
 
     }
 

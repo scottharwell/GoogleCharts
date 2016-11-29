@@ -10,7 +10,7 @@
   Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-class GoogleCharts extends Object
+class GoogleCharts
 {
 
     /**
@@ -27,11 +27,11 @@ class GoogleCharts extends Object
      */
     private $columns = array (
         'x' => array (
-            'type'  => 'string', 
+            'type'  => 'string',
             'label' => 'x Axis'
-        ), 
+        ),
         'y'     => array (
-            'type'  => 'number', 
+            'type'  => 'number',
             'label' => 'y Axis'
         )
     );
@@ -49,14 +49,14 @@ class GoogleCharts extends Object
      * @var string
      */
     private $options = array (
-        'width'          => 400, 
-        'height'         => 300, 
-        'title'          => 'Chart', 
+        'width'          => 400,
+        'height'         => 300,
+        'title'          => 'Chart',
         'titleTextStyle' => array (
             'color' => 'red'
         )
     );
-    
+
     /**
      * Default callbacks
      *
@@ -70,10 +70,10 @@ class GoogleCharts extends Object
      * @var string
      */
     private $div = "chart_div";
-    
+
     /*
      * Constructor
-     * 
+     *
      * @param mixed $type
      * @param mixed $columns
      * @param mixed $rows
@@ -83,8 +83,6 @@ class GoogleCharts extends Object
 
     public function __construct ($type = null, $columns = null, $rows = null, $options = null, $div = null)
     {
-        parent::__construct ();
-
         if (!empty ($type))
         {
             $this->type = $type;
@@ -111,10 +109,10 @@ class GoogleCharts extends Object
         }
 
     }
-    
+
     /*
      * Magic Call Function
-     * 
+     *
      * @param String $name name of param to set
      * @param mixed $value value to set
      * @return GoogleChart $this
@@ -128,10 +126,10 @@ class GoogleCharts extends Object
         }
         return $this;
     }
-    
+
     /*
      * Magic Get Function
-     * 
+     *
      * @param String $name name of param to set
      * @return mixed
      */
